@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星禾管理后台</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- 左侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-dot"></span>
+        星禾后台
+      </div>
+
+    <ul class="sidebar-menu">
+        <li class="active"><span class="menu-icon">📊</span><span class="menu-text">数据概览</span></li>
+        <li><span class="menu-icon">📦</span><span class="menu-text">订单管理</span></li>
+        <li><span class="menu-icon">👤</span><span class="menu-text">用户管理</span></li>
+        <li><span class="menu-icon">🛍</span><span class="menu-text">商品管理</span></li>
+        <li><span class="menu-icon">🔔</span><span class="menu-text">消息通知</span></li>
+        <li><span class="menu-icon">⚙</span><span class="menu-text">系统设置</span></li>
+    </ul>
+    </aside>
+
+    <!-- 右侧主内容 -->
+    <main class="main">
+      <!-- 顶部栏 -->
+        <header class="topbar">
+        <div class="topbar-left">
+            <div class="topbar-title-row">
+            <button class="menu-toggle" id="menuToggleBtn">☰</button>
+            <div>
+                <h1>数据概览</h1>
+                <p>欢迎来到星禾管理后台</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="topbar-right">
+            <div class="search-box">
+            <input type="text" id="globalSearch" placeholder="搜索订单 / 用户 / 商品" />
+            </div>
+            <span class="admin-name">管理员：admin</span>
+        </div>
+        </header>
+
+      <!-- 数据卡片 -->
+      <section class="stats">
+        <div class="stat-card">
+        <h3>总订单数</h3>
+        <p class="stat-number" data-target="1286">0</p>
+        </div>
+        <div class="stat-card">
+        <h3>今日销售额</h3>
+        <p class="stat-number" data-target="23680">0</p>
+        </div>
+        <div class="stat-card">
+        <h3>新增用户</h3>
+        <p class="stat-number" data-target="328">0</p>
+        </div>
+        <div class="stat-card">
+        <h3>待处理订单</h3>
+        <p class="stat-number" data-target="47">0</p>
+        </div>
+      </section>
+ 
+      <!-- 图表 + 快捷信息 -->
+      <section class="content-grid">
+        <div class="panel chart-panel">
+          <div class="panel-header">
+            <h2>近7日销售趋势</h2>
+          </div>
+            <div class="fake-chart">
+            <div class="chart-col">
+                <div class="bar" style="height: 40%;"></div>
+                <span>一</span>
+            </div>
+            <div class="chart-col">
+                <div class="bar" style="height: 55%;"></div>
+                <span>二</span>
+            </div>
+            <div class="chart-col">
+                <div class="bar" style="height: 48%;"></div>
+                <span>三</span>
+            </div>
+            <div class="chart-col">
+                <div class="bar" style="height: 72%;"></div>
+                <span>四</span>
+            </div>
+            <div class="chart-col">
+                <div class="bar" style="height: 66%;"></div>
+                <span>五</span>
+            </div>
+            <div class="chart-col">
+                <div class="bar" style="height: 82%;"></div>
+                <span>六</span>
+            </div>
+            <div class="chart-col">
+                <div class="bar" style="height: 60%;"></div>
+                <span>日</span>
+            </div>
+            </div>
+        </div>
+
+        <div class="panel notice-panel">
+          <div class="panel-header">
+            <h2>系统通知</h2>
+          </div>
+          <ul class="notice-list">
+            <li>新订单提醒：订单 #XH1024 待处理</li>
+            <li>库存预警：蓝牙耳机库存不足</li>
+            <li>本周销售额较上周增长 12%</li>
+            <li>系统将于今晚 23:00 进行维护</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 表格 -->
+      <section class="panel table-panel">
+        <div class="panel-header table-header">
+        <h2>最新订单</h2>
+
+        <div class="table-actions">
+        <input type="text" id="orderSearch" class="table-search" placeholder="搜索客户名称 / 商品" />
+
+        <select id="statusFilter" class="status-filter">
+            <option value="all">全部状态</option>
+            <option value="pending">待处理</option>
+            <option value="done">已完成</option>
+            <option value="shipping">配送中</option>
+        </select>
+
+        <button class="add-btn" id="openModalBtn">新增订单</button>
+        </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>订单编号</th>
+                <th>客户名称</th>
+                <th>商品</th>
+                <th>金额</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="orderTableBody">
+              <tr>
+                <td>#XH1024</td>
+                <td>张同学</td>
+                <td>无线耳机</td>
+                <td>¥299</td>
+                <td><span class="status pending">待处理</span></td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn view-btn">查看</button>
+                    <button class="action-btn edit-btn">编辑</button>
+                    <button class="action-btn delete-btn">删除</button>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#XH1025</td>
+                <td>李女士</td>
+                <td>智能手表</td>
+                <td>¥899</td>
+                <td><span class="status done">已完成</span></td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn view-btn">查看</button>
+                    <button class="action-btn edit-btn">编辑</button>
+                    <button class="action-btn delete-btn">删除</button>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#XH1026</td>
+                <td>王先生</td>
+                <td>蓝牙音箱</td>
+                <td>¥459</td>
+                <td><span class="status shipping">配送中</span></td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn view-btn">查看</button>
+                    <button class="action-btn edit-btn">编辑</button>
+                    <button class="action-btn delete-btn">删除</button>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>#XH1027</td>
+                <td>陈先生</td>
+                <td>平板支架</td>
+                <td>¥129</td>
+                <td><span class="status pending">待处理</span></td>
+                <td>
+                    <div class="action-group">
+                        <button class="action-btn view-btn">查看</button>
+                    <button class="action-btn edit-btn">编辑</button>
+                    <button class="action-btn delete-btn">删除</button>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">下一页</button>
+        </div>
+      </section>
+    <div class="modal" id="orderModal">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h3 id="modalTitle">新增订单</h3>
+        <button class="close-btn" id="closeModalBtn">×</button>
+        </div>
+
+        <form id="orderForm" class="modal-form">
+        <input type="text" id="customerName" placeholder="客户名称" />
+        <input type="text" id="productName" placeholder="商品名称" />
+        <input type="text" id="orderAmount" placeholder="订单金额，如 ¥299" />
+
+        <select id="orderStatus">
+            <option value="pending">待处理</option>
+            <option value="done">已完成</option>
+            <option value="shipping">配送中</option>
+        </select>
+
+        <button type="submit" class="submit-btn">保存订单</button>
+        <p id="formTip" class="form-tip"></p>
+        </form>
+    </div>
+    </div>
+    <div class="detail-modal" id="detailModal">
+    <div class="detail-modal-content">
+        <div class="modal-header">
+        <h3>订单详情</h3>
+        <button class="close-btn" id="closeDetailBtn">×</button>
+        </div>
+
+        <div class="detail-body">
+        <div class="detail-item">
+            <span class="detail-label">订单编号</span>
+            <span id="detailOrderId" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">客户名称</span>
+            <span id="detailCustomer" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">商品名称</span>
+            <span id="detailProduct" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">订单金额</span>
+            <span id="detailAmount" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">订单状态</span>
+            <span id="detailStatus" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">下单时间</span>
+            <span id="detailTime" class="detail-value">2026-04-06 14:30</span>
+        </div>
+        <div class="detail-item detail-remark">
+            <span class="detail-label">备注信息</span>
+            <span id="detailRemark" class="detail-value">客户已确认收货地址，等待系统处理。</span>
+        </div>
+        </div>
+    </div>
+    </div>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
